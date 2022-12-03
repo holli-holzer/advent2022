@@ -12,8 +12,7 @@ sub priority( Str \c )
 dd "03.input.txt".IO
     .lines
     .map({ [∩] |.&halves».comb })
-    .map({ .keys })
-    .flat
+    .map({ |.keys })
     .map({ .&priority  })
     .sum;
 
