@@ -5,5 +5,5 @@ sub parse( \s ) {
 say "input.txt"
     .IO
     .lines
-    .grep({ +( [∩] .&parse ) })
+    .grep({ [∩] .&parse })
     .elems;
