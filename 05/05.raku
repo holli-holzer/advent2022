@@ -1,6 +1,4 @@
-subset CrateMoverModel of Str where any '9000', '9001';
-
-unit sub MAIN( Str $input-file, CrateMoverModel :$crate-mover-model = '9000' );
+unit sub MAIN( Str $input-file, Int :$crate-mover-model where 9000|9001 );
 
 my ( $stacks, $moves ) = $input-file.IO.split( "\n\n" );
 
