@@ -6,8 +6,6 @@ multi parse( $file )
     my %result;
 
     parse $file.IO.lines( :chomp ).list.iterator, @path, %result;
-
-    %result;
 }
 
 multi parse( Iterator \data, \path, \result )
@@ -24,19 +22,21 @@ multi parse( Iterator \data, \path, \result )
                 last;
             }
 
-            when /^ \$ \s cd \s (.+) /
+            when /^ \$ \s cd \s ( .+ ) /
             {
                 path.push: $/[0];
                 parse data, path, result;
             }
 
-            when /^ (\d+) \s (.+) /
+            when /^ ( \d+ ) \s ( .+ ) /
             {
                 result{ .join: "/" } += $/[0]
                     for [\,] |path;
             }
         }
     }
+
+    result;
 }
 
 given parse( $input-file )
